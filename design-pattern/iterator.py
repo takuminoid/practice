@@ -33,6 +33,11 @@ class StudentList:
         return len(self._students) - 1
 
 
+class MyStudentList(StudentList):
+    def iterator(self):
+        return MyStudentListIterator(self)
+
+
 class Teacher(ABC):
     def __init__(self, students_list: StudentList):
         self._students_list = students_list
@@ -51,7 +56,7 @@ class Teacher(ABC):
 
 
 class MyTeacher(Teacher):
-    def __init__(self, students_list: StudentList):
+    def __init__(self, students_list: MyStudentList):
         super().__init__(students_list)
 
     @property
@@ -62,12 +67,44 @@ class MyTeacher(Teacher):
         self._students_list.add(my_student)
 
     def call_students(self):
-        for s in self._students_list.students:
-            print(s.name)
+        itr = self._students_list.iterator()
+        while itr.has_next():
+            print(itr.next().name)
+
+
+# Iteratorのインターフェイス
+class Iterator(ABC):
+    def __init__(self):
+        pass
+
+    @abstractmethod
+    def has_next(self):
+        pass
+
+    @abstractmethod
+    def next(self):
+        pass
+
+
+class MyStudentListIterator(Iterator):
+    def __init__(self, list: MyStudentList):
+        self._list = list
+        self._index = 0
+
+    def has_next(self) -> bool:
+        if self._list.get_last_num() >= self._index:
+            return True
+        else:
+            return False
+
+    def next(self) -> Student:
+        s = self._list.get_student_at(self._index)
+        self._index += 1
+        return s
 
 
 if __name__ == "__main__":
-    my_students_list = StudentList()
+    my_students_list = MyStudentList()
     you = MyTeacher(my_students_list)
 
     aoki = Student("青木亮太", 0)
