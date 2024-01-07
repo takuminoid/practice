@@ -2,7 +2,7 @@
 # 状態が変化するインスタンス自体が自ら「通知」する仕組みを持つことで、観察者は常に観察しなければいけない状態から解放される
 
 from abc import ABC, abstractmethod
-from typing import Dict, Optional
+from typing import Dict
 
 
 class Observer(ABC):
