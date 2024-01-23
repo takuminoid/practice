@@ -26,7 +26,9 @@ class Teacher(Observer):
         self._run_record: Dict[str, int] = {}
 
     def update(self, student: Subject, increment: int):
-        self._run_record[student.name] = self._run_record.get(student.name, 0) + increment
+        self._run_record[student.name] = (
+            self._run_record.get(student.name, 0) + increment
+        )
 
     @property
     def run_record(self) -> Dict[str, int]:

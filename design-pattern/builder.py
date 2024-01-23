@@ -55,8 +55,12 @@ class SaltWaterBuilder(Builder):
         self.salt_water.water += water_amount
 
     def abandon_solution(self, salt_water_amount: float):
-        salt_delta = salt_water_amount * (self.salt_water.salt / (self.salt_water.salt + self.salt_water.water))
-        water_delta = salt_water_amount * (self.salt_water.water / (self.salt_water.salt + self.salt_water.water))
+        salt_delta = salt_water_amount * (
+            self.salt_water.salt / (self.salt_water.salt + self.salt_water.water)
+        )
+        water_delta = salt_water_amount * (
+            self.salt_water.water / (self.salt_water.salt + self.salt_water.water)
+        )
         self.salt_water.salt -= salt_delta
         self.salt_water.water -= water_delta
 
