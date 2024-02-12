@@ -1,4 +1,4 @@
-# インスタンスのある時鵜の状態をスナップショットとしての保存を可能にするパターン
+# インスタンスのある時の状態をスナップショットとしての保存を可能にするパターン
 
 from abc import ABC, abstractmethod
 from typing import Dict

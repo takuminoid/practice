@@ -22,14 +22,6 @@ class Teacher(ABC):
     def visit(self, student_home: Home):
         pass
 
-    @abstractmethod
-    def visit(self, student_home: "TanakaHome"):
-        pass
-
-    @abstractmethod
-    def visit(self, student_home: "SuzukiHome"):
-        pass
-
     def get_student_list(self):
         return self.students
 
@@ -38,7 +30,7 @@ class RookieTeacher(Teacher):
     def __init__(self, students: list):
         self.students = students
 
-    def visit(self, student_home):
+    def visit(self, student_home: Home):
         if isinstance(student_home, SuzukiHome):
             student_home.reproved_child()
         elif isinstance(student_home, TanakaHome):
